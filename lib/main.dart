@@ -96,10 +96,30 @@ class _TaskState extends State<Task> {
                     ],
                   ),
                 ),
-                Text(
-                  'Nível: $nivel',
-                  style: const TextStyle(color: Colors.white, fontSize: 16),
-                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      // ignore: sized_box_for_whitespace
+                      child: Container(
+                        width: 200,
+                        child: LinearProgressIndicator(
+                          color: Colors.white,
+                          value: nivel / 10,
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Text(
+                        'Nível: $nivel',
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    )
+                  ],
+                )
               ],
             ),
           ],
