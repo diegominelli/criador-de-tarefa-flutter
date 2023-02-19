@@ -18,12 +18,17 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Tarefas'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: ListView(
           // ignore: prefer_const_literals_to_create_immutables
           children: [
-            const Task('Aprender Flutter'),
+            const Task('Aprender Flutter ccccccccccccccccccccccccc'),
             const Task('Andar de skate'),
+            const Task('Meditar'),
+            const Task('Meditar'),
+            const Task('Meditar'),
+            const Task('Meditar'),
+            const Task('Meditar'),
+            const Task('Meditar'),
             const Task('Meditar'),
           ],
         ),
@@ -39,32 +44,45 @@ class Task extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: avoid_unnecessary_containers
-    return Container(
-      child: Stack(
-        children: [
-          Container(
-            color: Colors.blue,
-            height: 140,
-          ),
-          Container(
-            color: Colors.white,
-            height: 100,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  color: Colors.black26,
-                  width: 72,
-                  height: 100,
-                ),
-                Text(nome),
-                ElevatedButton(
-                    onPressed: () {}, child: const Icon(Icons.arrow_drop_up))
-              ],
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      // ignore: avoid_unnecessary_containers
+      child: Container(
+        child: Stack(
+          children: [
+            Container(
+              color: Colors.blue,
+              height: 140,
             ),
-          )
-        ],
+            Container(
+              color: Colors.white,
+              height: 100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    color: Colors.black26,
+                    width: 72,
+                    height: 100,
+                  ),
+                  // ignore: sized_box_for_whitespace
+                  Container(
+                    width: 200,
+                    child: Text(
+                      nome,
+                      style: const TextStyle(
+                          fontSize: 24, overflow: TextOverflow.ellipsis),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.arrow_drop_up),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
