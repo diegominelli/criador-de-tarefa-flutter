@@ -81,15 +81,42 @@ class _TaskState extends State<Task> {
                           fit: BoxFit.cover,
                         ),
                       ),
-                      // ignore: sized_box_for_whitespace
-                      Container(
-                        width: 200,
-                        child: Text(
-                          widget.nome,
-                          style: const TextStyle(
-                              fontSize: 24, overflow: TextOverflow.ellipsis),
-                        ),
-                      ),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // ignore: sized_box_for_whitespace
+                            Container(
+                              width: 200,
+                              child: Text(
+                                widget.nome,
+                                style: const TextStyle(
+                                  fontSize: 24,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              // ignore: prefer_const_literals_to_create_immutables
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  size: 15,
+                                  color: Colors.blue,
+                                ),
+                                const Icon(Icons.star,
+                                    size: 15, color: Colors.blue),
+                                const Icon(Icons.star,
+                                    size: 15, color: Colors.blue),
+                                const Icon(Icons.star,
+                                    size: 15,
+                                    color: Color.fromRGBO(187, 222, 251, 1)),
+                                const Icon(Icons.star,
+                                    size: 15,
+                                    color: Color.fromRGBO(187, 222, 251, 1)),
+                              ],
+                            )
+                          ]),
                       // ignore: sized_box_for_whitespace
                       Container(
                         height: 52,
