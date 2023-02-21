@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'difficulty.dart';
 
 void main() {
   runApp(MyApp());
@@ -137,45 +138,8 @@ class _TaskState extends State<Task> {
                                 ),
                               ),
                             ),
-                            Row(
-                              // ignore: prefer_const_literals_to_create_immutables
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 1)
-                                      ? Colors.blue
-                                      : const Color.fromRGBO(187, 222, 251, 1),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 2)
-                                      ? Colors.blue
-                                      : const Color.fromRGBO(187, 222, 251, 1),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 3)
-                                      ? Colors.blue
-                                      : const Color.fromRGBO(187, 222, 251, 1),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 4)
-                                      ? Colors.blue
-                                      : const Color.fromRGBO(187, 222, 251, 1),
-                                ),
-                                Icon(
-                                  Icons.star,
-                                  size: 15,
-                                  color: (widget.dificuldade >= 5)
-                                      ? Colors.blue
-                                      : const Color.fromRGBO(187, 222, 251, 1),
-                                ),
-                              ],
+                            Difficulty(
+                              dificultyLevel: widget.dificuldade,
                             )
                           ]),
                       // ignore: sized_box_for_whitespace
