@@ -78,23 +78,24 @@ class _FormScreenState extends State<FormScreen> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
-                    validator: (String? value) {
+                    onChanged: (text) {
+                      setState(() {});
+                    },
+                    validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Insira um url de imagem!';
+                        return 'Insira um URL de Imagem!';
                       }
                       return null;
                     },
                     keyboardType: TextInputType.url,
-                    onChanged: (text) {
-                      setState(() {});
-                    },
                     controller: imageController,
                     textAlign: TextAlign.center,
                     decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: 'Imagem',
-                        fillColor: Colors.white70,
-                        filled: true),
+                      border: OutlineInputBorder(),
+                      hintText: 'Imagem',
+                      fillColor: Colors.white70,
+                      filled: true,
+                    ),
                   ),
                 ),
                 Container(
@@ -103,10 +104,7 @@ class _FormScreenState extends State<FormScreen> {
                   decoration: BoxDecoration(
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(10),
-                    border: Border.all(
-                      width: 2,
-                      color: Colors.blue,
-                    ),
+                    border: Border.all(width: 2, color: Colors.blue),
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
@@ -114,7 +112,7 @@ class _FormScreenState extends State<FormScreen> {
                       imageController.text,
                       errorBuilder: (BuildContext context, Object exception,
                           StackTrace? stackTrace) {
-                        return const Icon(Icons.no_photography_outlined);
+                        return Image.asset('assets/images/nophoto.png');
                       },
                       fit: BoxFit.cover,
                     ),
@@ -133,6 +131,11 @@ class _FormScreenState extends State<FormScreen> {
                       );
                       // ignore: avoid_print
                       print(imageController.text);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Printando nova tarefa!'),
+                        ),
+                      );
                     }
                   },
                   child: const Text('Adicionar!'),
