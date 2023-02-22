@@ -19,6 +19,7 @@ class _FormScreenState extends State<FormScreen> {
         title: const Text('Nova Tarefa'),
       ),
       body: Center(
+          child: SingleChildScrollView(
         child: Container(
           height: 650,
           width: 375,
@@ -46,6 +47,7 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  keyboardType: TextInputType.number,
                   controller: difficultyController,
                   textAlign: TextAlign.center,
                   decoration: const InputDecoration(
@@ -58,6 +60,7 @@ class _FormScreenState extends State<FormScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextFormField(
+                  keyboardType: TextInputType.url,
                   onChanged: (text) {
                     setState(() {});
                   },
@@ -87,7 +90,7 @@ class _FormScreenState extends State<FormScreen> {
                     imageController.text,
                     errorBuilder: (BuildContext context, Object exception,
                         StackTrace? stackTrace) {
-                      return Image.asset('assets/images/nophoto.jpg');
+                      return const Icon(Icons.no_photography_outlined);
                     },
                     fit: BoxFit.cover,
                   ),
@@ -111,7 +114,7 @@ class _FormScreenState extends State<FormScreen> {
             ],
           ),
         ),
-      ),
+      )),
     );
   }
 }
