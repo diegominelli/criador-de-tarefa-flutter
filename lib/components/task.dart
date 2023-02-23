@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'difficulty.dart';
 
 class Task extends StatefulWidget {
-  final String nome;
-  final String foto;
-  final int dificuldade;
+  final String name;
+  final String photo;
+  final int difficulty;
 
-  const Task(this.nome, this.foto, this.dificuldade, {super.key});
+  const Task(this.name, this.photo, this.difficulty, {super.key});
 
   @override
   State<Task> createState() => _TaskState();
@@ -14,6 +14,14 @@ class Task extends StatefulWidget {
 
 class _TaskState extends State<Task> {
   int nivel = 0;
+
+  bool assetOrNetwork() {
+    if (widget.photo.contains('http')) {
+      return false;
+    }
+
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +56,15 @@ class _TaskState extends State<Task> {
                       height: 100,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(4),
-                        child: Image.asset(
-                          widget.foto,
-                          fit: BoxFit.cover,
-                        ),
+                        child: assetOrNetwork()
+                            ? Image.asset(
+                                widget.photo,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                widget.photo,
+                                fit: BoxFit.cover,
+                              ),
                       ),
                     ),
                     Column(
@@ -61,7 +74,7 @@ class _TaskState extends State<Task> {
                           SizedBox(
                             width: 200,
                             child: Text(
-                              widget.nome,
+                              widget.name,
                               style: const TextStyle(
                                 fontSize: 24,
                                 overflow: TextOverflow.ellipsis,
@@ -69,7 +82,7 @@ class _TaskState extends State<Task> {
                             ),
                           ),
                           Difficulty(
-                            dificultyLevel: widget.dificuldade,
+                            dificultyLevel: widget.difficulty,
                           )
                         ]),
                     SizedBox(
@@ -108,8 +121,8 @@ class _TaskState extends State<Task> {
                       width: 200,
                       child: LinearProgressIndicator(
                         color: Colors.white,
-                        value: (widget.dificuldade > 0)
-                            ? (nivel / widget.dificuldade) / 10
+                        value: (widget.difficulty > 0)
+                            ? (nivel / widget.difficulty) / 10
                             : 1,
                       ),
                     ),

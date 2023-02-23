@@ -18,7 +18,9 @@ class _InitialScreenState extends State<InitialScreen> {
         title: const Text('Tarefas'),
       ),
       body: ListView(
+        // ignore: sort_child_properties_last
         children: TaskInherited.of(context).taskList,
+        padding: const EdgeInsets.only(top: 8, bottom: 72),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
