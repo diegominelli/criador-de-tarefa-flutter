@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_projeto_flutter/data/task_inherited.dart';
-import 'package:primeiro_projeto_flutter/screens/form_screen.dart';
+import '../data/task_inherited.dart';
+import 'form_screen.dart';
 
 class InitialScreen extends StatefulWidget {
   const InitialScreen({super.key});
@@ -25,7 +25,9 @@ class _InitialScreenState extends State<InitialScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const FormScreen(),
+              builder: (contextNew) => FormScreen(
+                taskContext: context,
+              ),
             ),
           );
         },

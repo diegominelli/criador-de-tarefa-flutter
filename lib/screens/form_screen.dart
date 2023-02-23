@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:primeiro_projeto_flutter/data/task_inherited.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  const FormScreen({super.key, required this.taskContext});
+
+  final BuildContext taskContext;
 
   @override
   State<FormScreen> createState() => _FormScreenState();
@@ -10,7 +13,7 @@ class FormScreen extends StatefulWidget {
 class _FormScreenState extends State<FormScreen> {
   TextEditingController nameController = TextEditingController();
   TextEditingController difficultyController = TextEditingController();
-  TextEditingController imageController = TextEditingController();
+  TextEditingController photoController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
@@ -89,7 +92,7 @@ class _FormScreenState extends State<FormScreen> {
                           return null;
                         },
                         keyboardType: TextInputType.url,
-                        controller: imageController,
+                        controller: photoController,
                         textAlign: TextAlign.center,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
@@ -110,7 +113,7 @@ class _FormScreenState extends State<FormScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: Image.network(
-                          imageController.text,
+                          photoController.text,
                           errorBuilder: (BuildContext context, Object exception,
                               StackTrace? stackTrace) {
                             return Image.asset('assets/images/nophoto.png');
@@ -122,19 +125,23 @@ class _FormScreenState extends State<FormScreen> {
                     ElevatedButton(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
-                          // ignore: avoid_print
-                          print(nameController.text);
-                          // ignore: avoid_print
-                          print(
-                            int.parse(
-                              difficultyController.text,
-                            ),
-                          );
-                          // ignore: avoid_print
-                          print(imageController.text);
+                          // // ignore: avoid_print
+                          // print(nameController.text);
+                          // // ignore: avoid_print
+                          // print(
+                          //   int.parse(
+                          //     difficultyController.text,
+                          //   ),
+                          // );
+                          // // ignore: avoid_print
+                          // print(imageController.text);
+                          TaskInherited.of(widget.taskContext).newTask(
+                              nameController.text,
+                              photoController.text,
+                              int.parse(difficultyController.text));
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content: Text('Printando nova tarefa!'),
+                              content: Text('Criando uma nova Tarefa'),
                             ),
                           );
                           Navigator.pop(context);
