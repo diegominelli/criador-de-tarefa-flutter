@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_projeto_flutter/components/task.dart';
-import 'package:primeiro_projeto_flutter/data/task_dao.dart';
+import '../components/task.dart';
+import '../data/task_dao.dart';
 import 'form_screen.dart';
 
 class InitialScreen extends StatefulWidget {
@@ -91,7 +91,10 @@ class _InitialScreenState extends State<InitialScreen> {
                 taskContext: context,
               ),
             ),
-          );
+          ).then((value) => setState(() {
+                // ignore: avoid_print
+                print('Recarregando a tela inicial');
+              }));
         },
         child: const Icon(Icons.add),
       ),

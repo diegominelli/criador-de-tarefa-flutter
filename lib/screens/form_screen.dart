@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:primeiro_projeto_flutter/data/task_inherited.dart';
+
+import '../components/task.dart';
+import '../data/task_dao.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({super.key, required this.taskContext});
@@ -151,10 +153,13 @@ class _FormScreenState extends State<FormScreen> {
                           // );
                           // // ignore: avoid_print
                           // print(imageController.text);
-                          TaskInherited.of(widget.taskContext).newTask(
+                          taskDao().save(
+                            Task(
                               nameController.text,
                               photoController.text,
-                              int.parse(difficultyController.text));
+                              int.parse(difficultyController.text),
+                            ),
+                          );
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Criando uma nova Tarefa'),
