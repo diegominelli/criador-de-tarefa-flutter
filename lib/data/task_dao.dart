@@ -39,7 +39,7 @@ class taskDao {
   Map<String, dynamic> toMap(Task tarefa) {
     // ignore: avoid_print
     print('Convertendo tarefa em map');
-    final Map<String, dynamic> mapaDeTarefas = Map();
+    final Map<String, dynamic> mapaDeTarefas = {};
     mapaDeTarefas[_name] = tarefa.name;
     mapaDeTarefas[_difficulty] = tarefa.difficulty;
     mapaDeTarefas[_image] = tarefa.photo;
@@ -86,5 +86,14 @@ class taskDao {
     return toList(result);
   }
 
-  delete(String nomeDaTarefa) async {}
+  delete(String nomeDaTarefa) async {
+    // ignore: avoid_print
+    print('Deletando tarefa: $nomeDaTarefa');
+    final Database bancoDeDados = await getDatabase();
+    return bancoDeDados.delete(
+      _tablename,
+      where: '$_name = ?',
+      whereArgs: [nomeDaTarefa],
+    );
+  }
 }
