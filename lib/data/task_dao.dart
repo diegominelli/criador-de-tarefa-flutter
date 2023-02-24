@@ -19,19 +19,33 @@ class taskDao {
     print('Iniciando o save: ');
     final Database bancoDeDados = await getDatabase();
     var itemExists = await find(tarefa.name);
+    Map<String, dynamic> taskMap = toMap(tarefa);
     if (itemExists.isEmpty) {
       // ignore: avoid_print
       print('A tarefa nâo existia.');
-      return await bancoDeDados.insert(_tablename, values);
+      return await bancoDeDados.insert(_tablename, taskMap);
     } else {
+      // ignore: avoid_print
       print('A tarefa já existia!');
       return await bancoDeDados.update(
         _tablename,
-        values,
+        taskMap,
         where: '$_name = ?',
         whereArgs: [tarefa.name],
       );
     }
+  }
+
+  Map<String, dynamic> toMap(Task tarefa) {
+    // ignore: avoid_print
+    print('Convertendo tarefa em map');
+    final Map<String, dynamic> mapaDeTarefas = Map();
+    mapaDeTarefas[_name] = tarefa.name;
+    mapaDeTarefas[_difficulty] = tarefa.difficulty;
+    mapaDeTarefas[_image] = tarefa.photo;
+    // ignore: avoid_print
+    print('Mapa de Tarefas: $mapaDeTarefas');
+    return mapaDeTarefas;
   }
 
   Future<List<Task>> findAll() async {
