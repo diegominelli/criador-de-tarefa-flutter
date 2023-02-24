@@ -26,11 +26,32 @@ class _InitialScreenState extends State<InitialScreen> {
             List<Task>? items = snapshot.data;
             switch (snapshot.connectionState) {
               case ConnectionState.none:
-                break;
+                return Center(
+                  child: Column(
+                    children: const [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.waiting:
-                break;
+                return Center(
+                  child: Column(
+                    children: const [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.active:
-                break;
+                return Center(
+                  child: Column(
+                    children: const [
+                      CircularProgressIndicator(),
+                      Text('Carregando...'),
+                    ],
+                  ),
+                );
               case ConnectionState.done:
                 if (snapshot.hasData && items != null) {
                   if (items.isNotEmpty) {
@@ -42,9 +63,22 @@ class _InitialScreenState extends State<InitialScreen> {
                       },
                     );
                   }
+                  return Center(
+                    child: Column(
+                      children: const [
+                        Icon(Icons.error_outline, size: 128),
+                        Text(
+                          'Não há nenhuma Tarefa',
+                          style: TextStyle(fontSize: 32),
+                        )
+                      ],
+                    ),
+                  );
                 }
-                break;
+                return const Text('Erro ao carregar Tarefas ');
             }
+            // ignore: dead_code
+            return const Text('Erro desconhecido');
           },
         ),
       ),
