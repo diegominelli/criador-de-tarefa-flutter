@@ -1,4 +1,6 @@
+import 'package:sqflite/sqflite.dart';
 import '../components/task.dart';
+import 'database.dart';
 
 // ignore: camel_case_types
 class taskDao {
@@ -14,5 +16,17 @@ class taskDao {
 
   save(Task tarefa) async {}
 
-  findAll() async {}
+  Future<List<Task>> findAll() async {
+    // ignore: avoid_print
+    print('Acessando o findAll: ');
+    final Database bancoDeDados = await getDatabase();
+    final List<Map<String, dynamic>> result =
+        await bancoDeDados.query(_tablename);
+    // ignore: avoid_print
+    print('Procurando dados no banco de dados... encontrado: $result');
+    return toList()
+  }
+
+  Future<List<Task>> find(String nomeDaTarefa) async {}
+  delete(String nomeDaTarefa) async {}
 }
