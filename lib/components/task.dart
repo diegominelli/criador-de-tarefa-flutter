@@ -106,6 +106,13 @@ class _TaskState extends State<Task> {
                                         child: const Text('Não')),
                                     TextButton(
                                         onPressed: (() {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                              content:
+                                                  Text('Excluindo uma Tarefa'),
+                                            ),
+                                          );
                                           Navigator.pop(context);
                                         }),
                                         child: const Text('Sim')),
